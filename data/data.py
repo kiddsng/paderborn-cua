@@ -41,9 +41,9 @@ def generate_dataloaders(path, domain, batch_size):
     val_dataset = LoadDataset(val_dataset)
     test_dataset = LoadDataset(test_dataset)
 
-    train_dataloader = DataLoader(dataset=train_dataset, shuffle=True, batch_size=batch_size)
-    val_dataloader = DataLoader(dataset=val_dataset, shuffle=True, batch_size=batch_size)
-    test_dataloader = DataLoader(dataset=test_dataset, shuffle=True, batch_size=batch_size)
+    train_dataloader = DataLoader(dataset=train_dataset, batch_size=batch_size)
+    val_dataloader = DataLoader(dataset=val_dataset, batch_size=batch_size)
+    test_dataloader = DataLoader(dataset=test_dataset, batch_size=batch_size)
 
     return train_dataloader, val_dataloader, test_dataloader
 
