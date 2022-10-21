@@ -76,8 +76,18 @@ class ReplayDataset(Dataset):
         for data in train_dataset:
             tmp['x'] += [data[0].numpy()]
             tmp['y'] += [data[1]]
+        
         tmp['x'] = np.array(tmp['x'])
         tmp['y'] = np.array(tmp['y'])
+
+        np.random.seed(4154)
+        perm = np.random.permutation(8184)
+        num_samples = tmp['x'].shape[0]
+        # !!! for subsampling rate
+        # 0.01, 0.1, 0.5, 1
+        num_subsamples = int(1 * num_samples)
+        tmp['x'] = np.array(tmp['x'])[perm[0:num_subsamples]]
+        tmp['y'] = np.array(tmp['y'])[perm[0:num_subsamples]]
 
         self.replay_dataset = SimpleDataset(np.array(tmp['x']), np.array(tmp['y']))
 
